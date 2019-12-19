@@ -33,17 +33,19 @@
 
 #### to extract just the counts for differential expression analysis
 `cut -f 1,4 **_[enter your path]_**/output39/abundance.tsv | sed '1d' > active39.kallisto.counts.txt`
+
 `cut -f 1,4 **_[enter your path]_**/output42/abundance.tsv | sed '1d' > tun42.kallisto.counts.txt`
 
 #### sort
 `sort -k 1 **_[enter your path]_**/active39.kallisto.counts.txt > active39.kallisto.counts.sorted.txt` 
+
 `sort -k 1 **_[enter your path]_**/active42.kallisto.counts.txt > active42.kallisto.counts.sorted.txt` 
 
 ### DESEQ2 (R)
 
 `setwd("**_[enter your path]_**")
-library(DESeq2)
 
+library(DESeq2)
 
 counts<-read.table("jointcount.sorted.csv", header = F)
 
