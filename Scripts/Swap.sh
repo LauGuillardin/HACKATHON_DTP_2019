@@ -6,7 +6,7 @@
 
 #-------------------------------------------------------------------------------                     
 
-DIRINPUTS=**_[enter_your_path]_**/scripts/test   ####Set the path to your input files working directory
+DIRINPUTS=[enter_your_path]/scripts/test   ####Set the path to your input files working directory
 
 #####Set working directory to the input files directory
 cd $DIRINPUTS
