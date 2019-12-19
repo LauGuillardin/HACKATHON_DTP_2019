@@ -79,7 +79,7 @@ idx<-identify(results_DEA$baseMean, results_DEA$log2FoldChange)
 write.table(results_DEA, file = "results_DEA.tsv", sep = "\t", quote = F)
 
 
-#code for creating a heatmap  #######################################################################
+#code for creating a heatmap 
 ntd <- normTransform(dds)
 
 BiocManager::install("vsn")
@@ -92,5 +92,4 @@ select <- order(rowMeans(counts(dds,normalized=FALSE)),
 df <- as.data.frame(colData(dds)[,c("condition","type")])
 pheatmap(assay(ntd)[select,], cluster_rows=FALSE, show_rownames=FALSE,
          cluster_cols=FALSE, annotation_col=df)
-=======
 ```
