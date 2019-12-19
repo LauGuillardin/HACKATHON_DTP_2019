@@ -13,34 +13,34 @@
 
 ### QUALITY CONTROL USING FASTQC
 
-**_[enter your path]_**/FastQC/fastqc SRR5218242.1_1.fastq.gz 
+`**_[enter your path]_**/FastQC/fastqc SRR5218242.1_1.fastq.gz` 
 
 ### TRIMMOMATIC
 
-java -jar **_[enter your path]_**/Trimmomatic-0.39/trimmomat-0.39.jar PE SRR5218239.1_1.fastq.gz SRR5218239.1_2.fastq.gz SRR5218239.1_1_TRIMMED_paired.fastq.gz SRR5218239.1_1_TRIMMED_unpaired.fastq.gz SRR5218239.1_2_TRIMMED_paired.fastq.gz SRR5218239.1_2_TRIMMED_unpaired.fastq.gz ILLUMINACLIP:**_[enter your path]_**/Trimmomatic-0.39/adapters/TruSeq2-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
+`java -jar **_[enter your path]_**/Trimmomatic-0.39/trimmomat-0.39.jar PE SRR5218239.1_1.fastq.gz SRR5218239.1_2.fastq.gz SRR5218239.1_1_TRIMMED_paired.fastq.gz SRR5218239.1_1_TRIMMED_unpaired.fastq.gz SRR5218239.1_2_TRIMMED_paired.fastq.gz SRR5218239.1_2_TRIMMED_unpaired.fastq.gz ILLUMINACLIP:**_[enter your path]_**/Trimmomatic-0.39/adapters/TruSeq2-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36`
 
 ### QUALITY CONTROL USING FASTQC
 
-**_[enter your path]_**/FastQC/fastqc SRR5218242.1_1.fastq.gz 
+`**_[enter your path]_**/FastQC/fastqc SRR5218242.1_1.fastq.gz` 
 
 ### KALLISTO
 #### index
-**_[enter your path]_**/KALLISTO/kallisto index -i transcripts.idx MTYJ01.1.fsa_nt.gz
+`**_[enter your path]_**/KALLISTO/kallisto index -i transcripts.idx MTYJ01.1.fsa_nt.gz`
 #### quant active
-kallisto quant -i transcripts.idx -o output39 -b 100 <(zcat SRR5218239.1_1_TRIMMED_paired.fastq.gz) <(zcat SRR5218239.1_2_TRIMMED_paired.fastq.gz)
+`**_[enter your path]_**/KALLISTO/kallisto quant -i transcripts.idx -o output39 -b 100 <(zcat SRR5218239.1_1_TRIMMED_paired.fastq.gz) <(zcat SRR5218239.1_2_TRIMMED_paired.fastq.gz)`
 #### quant tun
-kallisto quant -i transcripts.idx -o output42 -b 100 <(zcat SRR5218242.1_1_TRIMMED_paired.fastq.gz) <(zcat SRR5218242.1_2_TRIMMED_paired.fastq.gz)
+`**_[enter your path]_**/KALLISTO/kallisto quant -i transcripts.idx -o output42 -b 100 <(zcat SRR5218242.1_1_TRIMMED_paired.fastq.gz) <(zcat SRR5218242.1_2_TRIMMED_paired.fastq.gz)`
 
 #### to extract just the counts for differential expression analysis
-cut -f 1,4 **_[enter your path]_**/output39/abundance.tsv | sed '1d' > active39.kallisto.counts.txt
-cut -f 1,4 **_[enter your path]_**/output42/abundance.tsv | sed '1d' > tun42.kallisto.counts.txt
+`cut -f 1,4 **_[enter your path]_**/output39/abundance.tsv | sed '1d' > active39.kallisto.counts.txt`
+`cut -f 1,4 **_[enter your path]_**/output42/abundance.tsv | sed '1d' > tun42.kallisto.counts.txt`
 
 #### sort
-sort -k 1 **_[enter your path]_**/active39.kallisto.counts.txt > active39.kallisto.counts.sorted.txt 
-sort -k 1 **_[enter your path]_**/active42.kallisto.counts.txt > active42.kallisto.counts.sorted.txt 
+`sort -k 1 **_[enter your path]_**/active39.kallisto.counts.txt > active39.kallisto.counts.sorted.txt` 
+`sort -k 1 **_[enter your path]_**/active42.kallisto.counts.txt > active42.kallisto.counts.sorted.txt` 
 
 ### DESEQ2 (R)
-setwd("**_[enter your path]_**")
+`setwd("**_[enter your path]_**")
 library(DESeq2)
 
 
@@ -64,9 +64,8 @@ results_DEA<-results(dds, contrast = c("condition","active", "tun"))
 
 
 plotMA(results_DEA)
-
 idx<-identify(results_DEA$baseMean, results_DEA$log2FoldChange)
 
-write.table(results_DEA, file = "results_DEA.tsv", sep = "\t", quote = F)
+write.table(results_DEA, file = "results_DEA.tsv", sep = "\t", quote = F)`
 
 
