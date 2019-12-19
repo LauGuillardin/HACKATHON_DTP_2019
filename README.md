@@ -64,7 +64,9 @@ results_DEA<-results(dds, contrast = c("condition","active", "tun"))
 
 
 plotMA(results_DEA)
+
 idx<-identify(results_DEA$baseMean, results_DEA$log2FoldChange)
+
 write.table(results_DEA, file = "results_DEA.tsv", sep = "\t", quote = F)
 
 
