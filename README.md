@@ -1,6 +1,6 @@
 # HACKATHON_DTP_2019
 ## BIOINFORMATICS WORKFLOW
-
+![](https://media.giphy.com/media/OkaMjJ7r7cMhO/giphy.gif)
 
 ### DOWNLOAD SRR DATA files from NCBI
  
