@@ -8,7 +8,7 @@
 ### CONVERT SRR INTO FASTQ and #SPLIT PE FILES INTO _1 _2 (FORWARD AND REVERSE)
 
 
-**_[enter your path]_**/sratoolkit.2.9.6-1-centos_linux64/bin/fastq-dump --accession SRR5218239.1 --split-files --defline-seq '@$sn[_$rn]/$ri' --defline-qual '+' --split-spot --gzip
+`**_[enter your path]_**/sratoolkit.2.9.6-1-centos_linux64/bin/fastq-dump --accession SRR5218239.1 --split-files --defline-seq '@$sn[_$rn]/$ri' --defline-qual '+' --split-spot --gzip`
 
 
 ### QUALITY CONTROL USING FASTQC
