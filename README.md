@@ -45,25 +45,31 @@ library(DESeq2)
 
 
 counts<-read.table("jointcount.sorted.csv", header = F)
+
 counts
 
 colnames(counts)<-c("active39", "active39", "tun42", "tun42")
-counts_n<-counts[,c(2,4)]
 
+counts_n<-counts[,c(2,4)]
 
 counts_n[1:2] <- lapply(counts_n[1:2], round)
 
-
 plot(counts_n)
+
 keep <-rowSums(counts_n)>=10; counts_n<- counts_n[keep,]
+
 coldata<-read.table("data_table.txt",row.names = 1, header = T)
+
 dds<-DESeqDataSetFromMatrix(countData = counts_n, colData = coldata, design = ~condition)
+
 dds$condition <- relevel(dds$condition, ref = "active")
+
 dds<-DESeq(dds)
+
 results_DEA<-results(dds, contrast = c("condition","active", "tun"))
 
-
 plotMA(results_DEA)
+
 idx<-identify(results_DEA$baseMean, results_DEA$log2FoldChange)
 
 write.table(results_DEA, file = "results_DEA.tsv", sep = "\t", quote = F)`
